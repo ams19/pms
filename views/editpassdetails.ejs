@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+    <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+   
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/sidebar.css' />
+  </head>
+  <body>
+    <div class="wrapper d-flex align-items-stretch">
+      <nav id="sidebar">
+        <div class="custom-menu">
+          <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          </button>
+        </div>
+        <div class="img bg-wrap text-center py-4" style="background-image:url(/images/bg_1.jpg);">
+          <div class="user-logo">
+            <div class="img" style="background-image:  url(/uploads/<%=data%>);"></div>
+            <h3 style="text-transform: uppercase;font-weight: 500;"><%if(loginuser){%><%=loginuser%><%}%></h3>
+          </div>
+        </div>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="/dashboard"><span class="fa fa-home mr-3"></span>Home</a>
+          </li>
+          <li>
+             
+              <a href="/view-all-passwords"><span class="fa fa-eye"></span>&nbsp;&nbsp;View All Passwords</a>
+          </li>
+          <li>
+            <a href="/add-new-password"><span class="fa fa-cog mr-3"></span>Add New Password</a>
+          </li>
+          <li>
+            <a href="/view-all-category"><span class="fa fa-eye"></span>&nbsp;&nbsp;View All Categories</a>
+          </li>
+          <li>
+            <a href="/add-new-category"><span class="fa fa-cog mr-3"></span>Add New Category</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-support mr-3"></span>Support</a>
+          </li>
+          <li>
+            <a href="/logout"><span class="fa fa-sign-out mr-3"></span>Sign Out</a>
+          </li>
+        </ul>
+
+    	</nav>
+      <div class="content container">
+        <h1 style="margin-top: 30px;">Edit Password Details</h1>
+            <div class="row">
+                <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Edit Password Details Form</div>
+                            </div>  
+                        <div class="panel-body" >
+                          <% if(errors !=''){%>
+                            <div class="alert alert-danger">
+                              <strong>Failure!</strong> <%=errors %>
+                            </div>
+                            <% } %>
+                        <% if(success !=''){%>
+                            <div class="alert alert-success">
+                              <strong>Success!</strong> <%= success %>
+                            </div>
+                            <% } %>
+                            <form action="/view-all-passwords/edit/" id="newpasswordform" class="form-horizontal" method="post"  role="form" >
+                                
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                      
+                                <div class="form-group">
+                                  <label for="category" class="col-md-3 control-label">Password Category</label>
+                                  <div class="col-md-9">
+                                   
+                                      <select style="height: 35px;font-size: 15px;" class="form-control" name="passcat" value="<%=records.passname%>">
+                                        <option value="choosepasswordcategory">Choose Password Category</option>
+                                          <%if(records1.length>0){%>
+                                          <%records1.forEach(function(row){%>
+                                          <option value="<%= row.passname %>" <% if(row.passname==records.passname){ %> selected <% } %>><%= row.passname %></option>
+                                          <%})}%>
+                                        </select>
+
+                                  </div>
+                              </div>
+                             
+                              <div class="form-group">
+                                  <label for="category" class="col-md-3 control-label">Password Details</label>
+                                  <div class="col-md-9">
+                                      <textarea type="text" id='editor' class="form-control" rows="5" name="passdetails" value="<%=records.passdetails%>"><%=records.passdetails%></textarea>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <!-- Button -->                                        
+                                      <div class="col-md-offset-3 col-md-9">
+                                      <input style="height: 35px;font-size: 15px;" type="submit" name="submit" value="Update Password" class="btn btn-primary">   
+                                      </div>
+                                  <p><a></a>&nbsp;&nbsp;&nbsp;<a href="/view-all-passwords">View all Passwords</a></p>
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <script>
+           CKEDITOR.replace( 'editor' );
+            (function($) {
+
+"use strict";
+
+var fullHeight = function() {
+
+  $('.js-fullheight').css('height', $(window).height());
+  $(window).resize(function(){
+    $('.js-fullheight').css('height', $(window).height());
+  });
+
+};
+fullHeight();
+
+$('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+});
+
+})(jQuery);
+
+        </script>
+        <%-include('footer2')%>
+    </body>
+</html>
+        

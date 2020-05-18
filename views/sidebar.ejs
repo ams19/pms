@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/stylesheets/sidebar.css">
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary">
+	        </button>
+        </div>
+	  		<div class="img bg-wrap text-center py-4" style="background-image: url(./images/bg_1.jpg);">
+	  			<div class="user-logo">
+	  				<div class="img" style="background-image: url(./uploads/<%=data.profileimage%>);"></div>
+	  				<h3 style="text-transform: uppercase;font-weight: 500;"><%if(loginuser){%><%=loginuser%><%}%></h3>
+	  			</div>
+	  		</div>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="#"><span class="fa fa-home mr-3"></span>Home</a>
+          </li>
+          <li>
+             
+              <a href="/view-all-passwords"><span class="fa fa-eye"></span>&nbsp;&nbsp;&nbsp;&nbsp;View All Passwords</a>
+          </li>
+          <li>
+            <a href="/add-new-password"><span class="fa fa-cog mr-3"></span>Add New Password</a>
+          </li>
+          <li>
+            <a href="/view-all-category"><span class="fa fa-eye"></span>&nbsp;&nbsp;&nbsp;&nbsp;View All Categories</a>
+          </li>
+          <li>
+            <a href="/add-new-category"><span class="fa fa-cog mr-3"></span>Add New Category</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-support mr-3"></span>Support</a>
+          </li>
+          <li>
+            <a href="/logout"><span class="fa fa-sign-out mr-3"></span>Sign Out</a>
+          </li>
+        </ul>
+
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <div class="row">
+          <br>
+          <h1 style="text-align: center;" class="col-sm-10 mb-4">Welcome To Password Manager</h1>
+          <h4  class="col-sm-2 mb-4" style="text-align: right;text-transform: capitalize;font-style: italic;color: green;font-size:large;">Logged In : <%=loginuser%></h4> 
+        </div>
+        <div class="row">
+          <% if(success !=''){%>
+            <div class="alert alert-success">
+              <strong>Success!</strong> <%= success %>
+            </div>
+            <% } %>
+            <% if(fail !=''){%>
+              <div class="alert alert-danger">
+                <strong>Failure!</strong> <%=fail %>
+              </div>
+              <% } %>
+
+          <!-- FORM FORM FORM  -->
+    
+          <br>
+          <br>
+          <h2>Your Details: </h2>
+          <br>
+          <br>
+          <div class="col-sm-12 form-group">
+            <br>
+            <label style="font-size: x-large;" for="usr">Name:<span style="text-transform: capitalize;font-style: italic;font-size: x-large;font-weight: normal;">&nbsp;&nbsp;<%=loginuser%></span></label>
+            <!-- <input style="text-transform: capitalize;" type="text" class="form-control" id="usr" name="uname" value="<%=loginuser%>"> -->
+            <br>
+            <br>
+          </div>
+         
+          <div class="col-sm-12 form-group">
+            <label style="font-size:x-large;">Email Id:<span style="font-size: x-large;font-style: italic;font-weight: normal;">&nbsp;&nbsp;<%=data.email%></span></label>
+            <!-- <input type="" class="form-control" id="email" value="<%=data.email%>" name="email"> -->
+            <br>
+            <br>
+          </div>
+
+          <div class="col-sm-12 form-group">
+            <%i=0; if(nopass.length>0){%>
+              <%nopass.forEach(function(row){%>
+              <%if(loginuser==row.username){ i++;%>
+              <%}})}%>
+              
+            <label style="font-size:x-large;">Number of passwords:<span style="font-size: x-large;font-style: italic;font-weight: normal;">&nbsp;&nbsp;<%=i%></span></label>
+            <br>
+            <br>
+          </div>
+
+          <div class="col-sm-12 form-group">
+            <%j=0; if(nopasscat.length>0){%>
+              <%nopasscat.forEach(function(row){%>
+              <%if(loginuser==row.username){ j++;%>
+              <%}})}%>
+            <label style="font-size:x-large;">Number of password categories:<span style="font-size: x-large;font-style: italic;font-weight: normal;">&nbsp;&nbsp;<%=j%></span></label>
+            <br>
+            <br>
+            <br>
+          </div>
+        </div>
+      </div>
+	
+
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="./javascripts/sidebar.js"></script>
+  </div>
+  </body>
+  <%-include('footer')%>
+</html>

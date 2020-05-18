@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+   
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/sidebar.css' />
+  </head>
+  <body>
+    	
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+          <button type="button" id="sidebarCollapse" class="btn btn-primary">
+	        </button>
+        </div>
+	  		<div class="img bg-wrap text-center py-4" style="background-image: url(./images/bg_1.jpg);">
+	  			<div class="user-logo">
+	  				<div class="img" style="background-image: url(./uploads/<%=data%>);"></div>
+	  				<h3 style="text-transform: uppercase;font-weight: 500;"><%if(loginuser){%><%=loginuser%><%}%></h3>
+	  			</div>
+	  		</div>
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="/dashboard"><span class="fa fa-home mr-3"></span>Home</a>
+          </li>
+          <li>
+             
+              <a href="/view-all-passwords"><span class="fa fa-eye"></span>&nbsp;&nbsp;View All Passwords</a>
+          </li>
+          <li>
+            <a href="/add-new-password"><span class="fa fa-cog mr-3"></span>Add New Password</a>
+          </li>
+          <li>
+            <a href="/view-all-category"><span class="fa fa-eye"></span>&nbsp;&nbsp;View All Categories</a>
+          </li>
+          <li>
+            <a href="/add-new-category"><span class="fa fa-cog mr-3"></span>Add New Category</a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-support mr-3"></span>Support</a>
+          </li>
+          <li>
+            <a href="/logout"><span class="fa fa-sign-out mr-3"></span>Sign Out</a>
+          </li>
+        </ul>
+
+    	</nav>
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <div class="container">
+        <div class="row">
+          <% if(success !=''){%>
+            <div class="alert alert-success">
+              <strong>Success!</strong> <%= success %>
+            </div>
+            <% } %>
+            <h1>Password Categories</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Password Category List</th>
+                    <!-- <th>Email</th>
+                    <th>Emp Type</th>
+                    <th>Hourly wage</th>
+                    <th>Total hours</th> -->
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <%if(records.length>0){i=0;%>
+                  <%records.forEach(function(row){%>
+                  <%if(user==row.username){ i++;%>
+                  <tr>
+                    <td><%= row.passname %></td>
+                    <td><a class="btn btn-primary btn-primary" href="view-all-category/edit/<%=row._id%>"><i class="fa fa-edit"></i></a>
+                    <a  class="btn btn-danger btn-danger" href="view-all-category/delete/<%=row._id%>" onclick="return confirm('Are you sure you want to remove it?')"><i class="fa fa-trash"></i></a></td>
+                  </tr>
+                  <%}%>
+                  <%})}else{%>
+                    <tr>
+                      <td colspan="6">No Record Found</td>
+                    </tr>
+                  <%}%>
+                  <%if(i==0){%>
+                    <tr>
+                      <td colspan="6">No Record Found</td>
+                    </tr>
+                  <%}%>
+            </table>
+            
+        </div>
+    </div>
+  </div>
+    <script>
+      (function($) {
+
+"use strict";
+
+var fullHeight = function() {
+
+  $('.js-fullheight').css('height', $(window).height());
+  $(window).resize(function(){
+    $('.js-fullheight').css('height', $(window).height());
+  });
+
+};
+fullHeight();
+
+$('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+});
+
+})(jQuery);
+
+    </script>
+      </div>
+  </body>
+
+  <%-include('footer')%>
+  </html>
