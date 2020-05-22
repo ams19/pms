@@ -1,34 +1,22 @@
-LIBRARY MANAGEMENT SYSTEM: 
+PASSWORD MANAGEMENT SYSTEM: http://ams19-pms.glitch.me/
 
-Library Management System is library managing app that is developed for simplifying the various steps involved in issuing or returning a book in a college library.Students and Librarians can sign in or sign up to the app. Students can search for the availability of a particular book in the library based upon book's title, author's name, publisher's name and can filter books as per Department.Librarians can issue books to students using this app and there is a limit of 2 books per student at a time that is a student cannot keep more than 2 books from library at the same time. Email alerts will be send to students a day before the last due date of returning the book after which fine will be charged at 5Rs/day for late return.Various other functionalities like adding a book into the database, removing a book from database etc are added in the app.
+Password Management System is a website developed for managing passwords of a user. A user can first create an account from register section and then after signing in to the website the user can add various password categories like gmail facebook twitter or any project name. Then through add a new password option the user can add a passwrd details (username and password or any related information) for a particular category. So that in future whenever the user needs to log in to a system he/she can directly copy paste the password details and there is no risk of forgetting signing in details.   
 
 Getting Started:
 
-Just clone the repository in a folder on your machine and run the library_management.jar application.
+Just clone the repository in a folder on your machine.
 
 Prerequisites:
 
-Java
+NodeJs
 
-Javafx
+HTML/CSS
 
-Java SceneBuilder
-
-Running the tests:
-
-First of all in maincontrollerpendingreturns.java class.
-
-Fill your gmail account details in myaccountemail and password varibales.
-
-Allow access to gmail through less secure apps 
-
-https://myaccount.google.com/security
+JQUERY
 
 Built With:
 
-Eclipse Ide
-
-SceneBuilder
+Visual Studio Code
 
 Author:
 
